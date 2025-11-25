@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Color Changer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transition: background-color 0.5s ease;
+            padding: 20px;
+            background-color: #f0f8ff;
+        }
+        
+        .container {
+            text-align: center;
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            max-width: 500px;
+            width: 100%;
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            color: #666;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+        
+        .color-button {
+            background-color: #4a6fa5;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin: 10px;
+        }
+        
+        .color-button:hover {
+            background-color: #385d8a;
+        }
+        
+        .color-display {
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            font-family: monospace;
+        }
+        
+        .instructions {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Simple Color Changer</h1>
+        <p>Click the button below to change the background color of this page!</p>
+        
+        <div class="color-display">
+            Current color: <span id="current-color">#f0f8ff</span>
+        </div>
+        
+        <button class="color-button" id="change-color">Change Color</button>
+        <button class="color-button" id="reset-color">Reset Color</button>
+        
+        <div class="instructions">
+            <p>This simple website demonstrates how HTML, CSS, and JavaScript work together.</p>
+        </div>
+    </div>
+
+    <script>
+        // Get elements from the page
+        const changeColorButton = document.getElementById('change-color');
+        const resetColorButton = document.getElementById('reset-color');
+        const currentColorSpan = document.getElementById('current-color');
+        const body = document.body;
+        
+        // Array of colors to choose from
+        const colors = [
+            '#f0f8ff', '#ffe4e1', '#e6e6fa', '#f5f5dc', 
+            '#f0fff0', '#fff0f5', '#f5fffa', '#fffacd',
+            '#e0ffff', '#f8f8ff', '#fafad2', '#ffe4b5'
+        ];
+        
+        // Function to generate a random color
+        function getRandomColor() {
+            const randomIndex = Math.floor(Math.random() * colors.length);
+            return colors[randomIndex];
+        }
+        
+        // Function to change the background color
+        function changeBackgroundColor() {
+            const newColor = getRandomColor();
+            body.style.backgroundColor = newColor;
+            currentColorSpan.textContent = newColor;
+        }
+        
+        // Function to reset the background color
+        function resetBackgroundColor() {
+            body.style.backgroundColor = '#f0f8ff';
+            currentColorSpan.textContent = '#f0f8ff';
+        }
+        
+        // Add event listeners to buttons
+        changeColorButton.addEventListener('click', changeBackgroundColor);
+        resetColorButton.addEventListener('click', resetBackgroundColor);
+    </script>
+</body>
+</html>
